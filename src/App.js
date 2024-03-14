@@ -7,7 +7,7 @@ function VerificationPage({ onVerificationSuccess }) {
 
   const handleVerification = () => {
     // Perform verification here, for demonstration, let's hardcode the code
-    if (code === '0521') {
+    if (code === '0516') {
       onVerificationSuccess();
     } else {
       alert('Incorrect code. Please try again.');
@@ -43,7 +43,7 @@ function App() {
 
   const fetchImagesVideos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/imagesvideos');
+      const response = await axios.get('https://mserver-lzs3.onrender.com/imagesvideos');
       setImagesVideos(response.data);
     } catch (error) {
       console.error('Error fetching images/videos:', error);
@@ -58,7 +58,7 @@ function App() {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      await axios.post('http://localhost:5000/upload', formData, {
+      await axios.post('https://mserver-lzs3.onrender.com/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
