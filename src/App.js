@@ -25,7 +25,7 @@ function VerificationPage({ onVerificationSuccess }) {
     <div>
       <label htmlFor="codeInput">CODE:</label>
       <input
-        type="text"
+        type="password"
         id="codeInput"
         value={code}
         onChange={(e) => setCode(e.target.value)}
