@@ -36,19 +36,97 @@
     transform: rotate(360deg);
   }
 }
+/* App.css */
+
+/* Define styles for the image container */
+.image-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Style the images to fit within their container */
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Style the video player to fit within the container */
+.video {
+  max-width: 100%;
+  height: auto;
+}
+/* App.css */
+
+.background-gradient {
+  background: linear-gradient(135deg, #FFC0CB, #FFFF00);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.verification-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.otp-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.otp-container input {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
 .gallery-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 }
 
 .card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 .video {
-  width: 100%;
+  max-width: 100%;
   height: auto;
+  border-radius: 5px;
+}
+
+
+.back-to-upload {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
