@@ -1,16 +1,23 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css'; // Import your CSS file for styling
 
 function VerificationPage({ onVerificationSuccess }) {
   const [code, setCode] = useState('');
+  const [verificationError, setVerificationError] = useState('');
 
-  const handleVerification = () => {
-    // Perform verification here, for demonstration, let's hardcode the code
-    if (code === '0516') {
-      onVerificationSuccess();
-    } else {
-      alert('Incorrect code. Please try again.');
+  const handleVerification = async () => {
+    try {
+      const response = await axios.post('https://mserver-lzs3.onrender.com/verify', { code });
+      if (response.data.success) {
+        onVerificationSuccess();
+      } else {
+        setVerificationError('Incorrect code. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error verifying code:', error);
+      setVerificationError('Error verifying code.');
     }
   };
 
@@ -22,9 +29,10 @@ function VerificationPage({ onVerificationSuccess }) {
         id="codeInput"
         value={code}
         onChange={(e) => setCode(e.target.value)}
-        maxLength={4}
+        maxLength={10}
       />
       <button onClick={handleVerification}>Verify</button>
+      {verificationError && <div>{verificationError}</div>}
     </div>
   );
 }
