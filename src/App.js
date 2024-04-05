@@ -1,3 +1,56 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './App.css'; // Import your CSS file for styling
+
+function VerificationPage({ onVerificationSuccess }) {
+  const [verificationCode, setVerificationCode] = useState(Array(10).fill(''));
+
+  const handleChange = (index, value) => {
+    const newVerificationCode = [...verificationCode];
+    newVerificationCode[index] = value;
+    setVerificationCode(newVerificationCode);
+    if (value && index < 9) {
+      // Automatically focus on the next input field if a value is entered
+      document.getElementById(`codeInput-${index + 1}`).focus();
+    }
+  };
+
+  const handleVerification = async () => {
+    const code = verificationCode.join(''); // Concatenate all the code values
+    try {
+      const response = await axios.post('https://mserver-lzs3.onrender.com/verify', { code });
+      if (response.data.success) {
+        onVerificationSuccess();
+      } else {
+        console.error('Incorrect code. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error verifying code:', error);
+    }
+  };
+
+  return (
+    <div className="center-container">
+      <div className="verification-container">
+        <label>Enter Verification Code:</label>
+        <div className="otp-container">
+          {verificationCode.map((value, index) => (
+            <input
+              key={index}
+              id={`codeInput-${index}`}
+              type="password"
+              maxLength="1"
+              value={value}
+              onChange={(e) => handleChange(index, e.target.value)}
+            />
+          ))}
+        </div>
+        <button onClick={handleVerification}>Verify</button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [file, setFile] = useState(null);
   const [imagesVideos, setImagesVideos] = useState([]);
@@ -88,3 +141,5 @@ function App() {
     </div>
   );
 }
+
+export default App;
