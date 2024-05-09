@@ -101,7 +101,10 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  overflow: auto; /* Ensure overflow property is set */
+  max-height: 80vh; /* Adjust max-height as needed */
 }
+
 
 .card {
   background-color: white;
