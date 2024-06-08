@@ -18,7 +18,7 @@ function VerificationPage({ onVerificationSuccess }) {
   const handleVerification = async () => {
     const code = verificationCode.join(''); // Concatenate all the code values
     try {
-      const response = await axios.post('https://apps-sigma-three.vercel.app//verify', { code });
+      const response = await axios.post('https://apps-sigma-three.vercel.app/verify', { code });
       if (response.data.success) {
         onVerificationSuccess();
       } else {
